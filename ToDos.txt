@@ -1,0 +1,14 @@
+1. Empty Project Structure
+------------------------------------
+Back-end Express api development
+------------------------------------
+2. Database Connection
+3. DB Model Create
+4. Create Api -> postman Test
+5. Read Api -> postman Test
+6. Update Api -> postman Test
+7. Delete Api -> postman Test
+8. ReadById Api -> postman Test
+-----------------------------------
+Front-end React UI
+-----------------------------------
