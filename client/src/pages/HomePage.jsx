@@ -30,10 +30,11 @@ const HomePage = () => {
                     <table className="table table-">
                         <thead>
                             <tr>
-                                <th>Title</th>
+                                <th>Code</th>
+                                <th>Name</th>
+                                <th>QTY</th>
                                 <th>Price</th>
-                                <th>Discount</th>
-                                <th>Discount Price</th>
+                                <th>Image</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -43,13 +44,14 @@ const HomePage = () => {
                                 Data.map((item,i)=> {
                                     return (
                                         <tr key={i}>
-                                            <td>{item['title']}</td>
+                                            <td>{item['food_code']}</td>
+                                            <td>{item['foods_name']}</td>
+                                            <td>{item['qty']}</td>
                                             <td>{item['price']}</td>
-                                            <td>{item['discount']}</td>
-                                            <td>{item['discount_price']}</td>
+                                            <td> <img className="w-25 flex" src={item['foods_image']} alt='image name'/></td>
                                             <td>
-                                                <button className="btn btn-success btn-sm w-25">Edit</button>  &nbsp;
-                                                <button className="btn btn-danger btn-sm w-25">Delete</button>
+                                                <button className="btn btn-success btn-sm w-100">Edit</button>  &nbsp;
+                                                <button className="btn btn-danger btn-sm w-100">Delete</button>
                                             </td>
                                         </tr>
                                     )
