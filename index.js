@@ -1,5 +1,5 @@
 const app = require('./App');
-const PORT = 8080;
+const PORT = process.env.PORT;
 app.listen(PORT,function(){
-    console.log('API Back-end App Running @8080')
+    console.log('API back-end running '+ PORT)
 })

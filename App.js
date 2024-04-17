@@ -8,8 +8,9 @@ const cors =require('cors');
 const cookieParser = require('cookie-parser');
 const path = require("path");
 const mongoose = require("mongoose");
-const dotenv = require('dotenv')
-dotenv.config();
+const dotenv = require('dotenv').config()
+
+//console.log(dotenv.parsed);
 
 app.use(cookieParser());
 app.use(cors())
@@ -26,12 +27,12 @@ app.use(limiter)
 // Database Connection
 
 
+
 //process.dotenv.URI
 
 let URI = 'mongodb+srv://<username>:<password>@cluster0.rpnurvs.mongodb.net/MERN_FOOD_CRUD';
-let OPTION = {user: 'siddique', pass: 'siddique1234', autoIndex: true};
-//let OPTION = {autoIndex: true};
-mongoose.connect(URI, OPTION).then((res)=>{
+let OPTION = {user: process.env.DB_USER, pass: process.env.DB_PASS, autoIndex: true};
+mongoose.connect(process.env.MONGODB_URI+process.env.DB_NAME, OPTION).then((res)=>{
     console.log('DB Connection Success');
 }).catch((err)=>{
     console.log(err);
