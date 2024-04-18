@@ -1,0 +1,80 @@
+:root{
+    --bs-link-color: #5A67BA;
+}
+
+body{
+    font-family: 'Poppins';
+    font-size: 12px;
+    letter-spacing: .5px;
+}
+
+.logo{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 2rem;
+
+}
+.logo-circle{
+    height: 30px;
+    width: 30px;
+    background: #5A67BA;
+}
+.logo-icon{
+    padding: 2px;
+    font-weight: 700;
+    margin-left: 6px;
+    margin-right: 20px;
+    color:#ffffff;
+    font-size: 16px;
+}
+.logo-title{
+    padding: 4px 0px 4px 10px;
+    color:#5A67BA;
+    font-weight: 700;
+    margin-top: auto;
+    margin-top: auto;
+    font-size: 16px;
+}
+
+.brand-bg{
+    background: #F1F2F7;
+}
+
+.menu{
+    background: #F1F2F7;
+    padding-top: 1.5rem !important;
+    padding-top: 1.5rem !important;
+    padding-right: 1rem !important;
+    padding-left: 1rem !important;
+}
+
+
+.menu-title{
+    color: #082431;
+    font-weight: 400;
+    font-size: 12px;
+}
+.menu-item{
+    color: #5A67BA;
+    font-weight: 400;
+    font-size: 12px;
+}
+
+.nav-pills {
+    --bs-nav-pills-border-radius: var(--bs-border-radius);
+    --bs-nav-pills-link-active-color: #fff;
+    --bs-nav-pills-link-active-bg: #5A67BA;
+    
+}
+
+.menu{
+    padding: 1.5rem !important;
+    padding-right: 3rem !important;
+    padding-left: 3rem !important;
+}
+
+
+.nav-pills .nav-link.active {
+    color: var(--bs-nav-pills-link-active-color);
+    background-color: var(--bs-nav-pills-link-active-bg);
+  }
