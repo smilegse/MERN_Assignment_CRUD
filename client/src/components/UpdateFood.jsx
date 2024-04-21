@@ -14,7 +14,7 @@ const UpdateFood = () => {
     }
     useEffect(()=>{
         (async ()=>{
-            await existingInfo;
+            await existingInfo(id);
         })()
     },[])
 
@@ -48,35 +48,35 @@ const UpdateFood = () => {
         <div className="container">
           <div className="row">
               <div className="col-md-12">
-                  <h6>Update Food Item {id}</h6>
+                  <h6>Update Food Item </h6>
               </div>
               <form onSubmit={UpdateData} >
                 <div className="row mt-4">
                     <div className="col-md-4 mb-3">
                         <label className="form-label">Food Name</label>
-                        <input defaultValue={existing!== null && existing['foods_name']} name="foods_name" type="text" className="form-control form-control-sm " placeholder="Enter food name"/>
+                        <input defaultValue={existing!== null ? (existing['foods_name']):("") } name="foods_name" type="text" className="form-control form-control-sm " placeholder="Enter food name"/>
                     </div>
                     <div className="col-md-4 mb-3">
                         <label className="form-label">Food Code</label>
-                        <input name="food_code" type="text" className="form-control form-control-sm " placeholder="Enter food code"/>
+                        <input defaultValue={existing!== null ? (existing['food_code']):("") }  name="food_code" type="text" className="form-control form-control-sm " placeholder="Enter food code"/>
                     </div>
                     <div className="col-md-4 mb-3">
                         <label className="form-label">Food Image</label>
-                        <input name="foods_image" type="text" className="form-control  form-control-sm " placeholder="Enter food image"/>
+                        <input defaultValue={existing!== null ? (existing['foods_image']):("") } name="foods_image" type="text" className="form-control  form-control-sm " placeholder="Enter food image"/>
                     </div>
                 </div>
                 <div className="row mt-4">
                     <div className="col-md-4 mb-3">
                         <label className="form-label">Food Category</label>
-                        <input name="food_category" type="text" className="form-control form-control-sm " placeholder="Enter food category"/>
+                        <input defaultValue={existing!== null ? (existing['food_category']):("") } name="food_category" type="text" className="form-control form-control-sm " placeholder="Enter food category"/>
                     </div>
                     <div className="col-md-4 mb-3">
                         <label className="form-label">QTY</label>
-                        <input name="qty" type="number" className="form-control form-control-sm " placeholder="Enter food qty"/>
+                        <input defaultValue={existing!== null ? (existing['qty']):("") } name="qty" type="number" className="form-control form-control-sm " placeholder="Enter food qty"/>
                     </div>
                     <div className="col-md-4 mb-3">
                         <label className="form-label">Price</label>
-                        <input name="price" type="number" className="form-control form-control-sm " placeholder="Enter food price"/>
+                        <input defaultValue={existing!== null ? (existing['price']):("") } name="price" type="number" className="form-control form-control-sm " placeholder="Enter food price"/>
                     </div>
                 </div>
                 <button type="submit" className="btn btn-primary mt-3">Update</button>
