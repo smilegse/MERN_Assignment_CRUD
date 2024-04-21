@@ -1,14 +1,26 @@
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import axios from 'axios';
+import { useNavigate, useParams } from "react-router-dom";
 import Helper from "../utility/Helper";
+import { useEffect, useState } from 'react';
+
+const UpdateFood = () => {
+
+    let {id} = useParams();
+    const [existing, setExisting] = useState(null);
+  
+    const existingInfo = async (id)=>{
+        let res = await axios.get(`${Helper.baseURL}/api/readById/${id}`);
+        setExisting(res.data['row']);
+    }
+    useEffect(()=>{
+        (async ()=>{
+            await existingInfo;
+        })()
+    },[])
 
 
-const CreateFood = () => {
-    
-    
     let navigate = useNavigate();
-
-    const CreateData = async (event)=>{
+    const UpdateData = async (event)=>{
         event.preventDefault()
         
         let formData = new FormData(event.target);
@@ -19,7 +31,7 @@ const CreateFood = () => {
         let qty = parseInt(formData.get("qty"));
         let price = parseFloat(formData.get("price"));
 
-        await axios.post(`${Helper.baseURL}/api/create`, {
+        await axios.post(`${Helper.baseURL}/api/update/${id}`, {
             foods_name: foods_name, 
             food_code: food_code, 
             foods_image: foods_image,
@@ -31,17 +43,18 @@ const CreateFood = () => {
         navigate('/');
     }
 
+
     return (
         <div className="container">
           <div className="row">
               <div className="col-md-12">
-                  <h6>Create Food Item</h6>
+                  <h6>Update Food Item {id}</h6>
               </div>
-              <form onSubmit={CreateData} >
+              <form onSubmit={UpdateData} >
                 <div className="row mt-4">
                     <div className="col-md-4 mb-3">
                         <label className="form-label">Food Name</label>
-                        <input name="foods_name" type="text" className="form-control form-control-sm " placeholder="Enter food name"/>
+                        <input defaultValue={existing!== null && existing['foods_name']} name="foods_name" type="text" className="form-control form-control-sm " placeholder="Enter food name"/>
                     </div>
                     <div className="col-md-4 mb-3">
                         <label className="form-label">Food Code</label>
@@ -66,11 +79,11 @@ const CreateFood = () => {
                         <input name="price" type="number" className="form-control form-control-sm " placeholder="Enter food price"/>
                     </div>
                 </div>
-                <button type="submit" className="btn btn-primary mt-3">Submit</button>
+                <button type="submit" className="btn btn-primary mt-3">Update</button>
               </form>
           </div>
       </div>
     );
-}
+};
 
-export default CreateFood;
+export default UpdateFood;

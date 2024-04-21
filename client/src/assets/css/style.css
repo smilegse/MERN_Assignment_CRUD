@@ -77,4 +77,18 @@ body{
 .nav-pills .nav-link.active {
     color: var(--bs-nav-pills-link-active-color);
     background-color: var(--bs-nav-pills-link-active-bg);
-  }
+}
+
+.w-30 {
+    width: 30% !important;
+}
+.card-img-overlay {
+    position: absolute;
+    color: #ffffff;
+    background-color: #A855F7;
+    margin-top: 5% !important;
+    margin-left: 68% !important;
+    margin-right: 5% !important;
+    margin-bottom: 95%;
+    padding: 3px 3px 3px 10px;
+}

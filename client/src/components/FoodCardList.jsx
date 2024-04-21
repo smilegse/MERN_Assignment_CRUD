@@ -2,6 +2,9 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import Loader from "../loader/Loader.jsx";
 import Helper from "../utility/Helper.js";
+import {Card, Button} from 'react-bootstrap';
+import toast from 'react-hot-toast'
+import { Link } from "react-router-dom";
 
 const FoodCardList = () => {
     let [Data, SetData] = useState([]);
@@ -14,7 +17,7 @@ const FoodCardList = () => {
 
     const ReadData = async ()=>{
         let res = await axios.get(`${Helper.baseURL}/api/read`);
-        console.log(res.data['row'])
+        //console.log(res.data['row'])
         SetData(res.data['row']);
     }
 
@@ -31,21 +34,28 @@ const FoodCardList = () => {
 
     return (
         <div className="container">
+            <h6>All Food List</h6>
             <div className="row">
-                <div className="col-md-12">
-                    <h6>All Food List</h6>
-                </div>
-                
-                {/* Data.length === 0? <Loader/> :
-                Data.map((item,i) => {
-                    return(
-                        <ul key={i}>
-                            <li></li>
-                        </ul>
-                    )
-                }) */}
-                        
-                
+                {
+                    Data.length === 0? (<Loader/>):
+                    (Data.map((item,i)=>{
+                        return (
+                            <Card key={i} className="col-md-3 p-0 m-2" >
+                                <Card.Img variant="top" src={item['foods_image']} />
+                                
+                                <Card.Body>
+                                    <Card.Text >{item['foods_name']}</Card.Text>
+                                    {/* <Button className="w-30" size="sm" variant="outline-success" >Edit</Button> */}
+                                    <Link to={`/update/${item['_id']}`} className="w-30 btn btn-outline-success btn-sm">Edit</Link>
+                                    <Button className="w-30 mx-3" onClick={()=>{DeleteData(item['_id'])}} size="sm" variant="outline-danger" >Delete</Button>
+                                </Card.Body>
+                                <div className="card-img-overlay">
+                                    <span>Tk: {item['price']}</span>
+                                </div>
+                            </Card>
+                        )
+                    }))
+                }
             </div>
         </div>
     )

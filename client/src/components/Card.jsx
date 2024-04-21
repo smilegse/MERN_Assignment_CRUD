@@ -1,10 +1,11 @@
 
 export default function Card(props) {
+    // alert(JSON.stringify(props.item))
     return (
         <div className="card" style="width: 18rem;">
-            <img src="" className="card-img-top" alt=""/>
+            <img className="card-img-top" src={props.item['foods_image']} alt='image name'/>
             <div className="card-body">
-                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p className="card-text">{props.item['foods_name']}</p>
                 <div>
                     <button href="#" className="btn btn-danger">Edit</button>
                     <button href="#" className="btn btn-success">Delete</button>
