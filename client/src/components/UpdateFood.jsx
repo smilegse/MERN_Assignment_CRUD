@@ -2,11 +2,15 @@ import axios from 'axios';
 import { useNavigate, useParams } from "react-router-dom";
 import Helper from "../utility/Helper";
 import { useEffect, useState } from 'react';
+import ButtonSpinner from './ButtonSpinner';
 
 const UpdateFood = () => {
 
     let {id} = useParams();
+    let navigate = useNavigate();
+
     const [existing, setExisting] = useState(null);
+    let [submit,setSubmit] = useState(false);
   
     const existingInfo = async (id)=>{
         let res = await axios.get(`${Helper.baseURL}/api/readById/${id}`);
@@ -17,9 +21,7 @@ const UpdateFood = () => {
             await existingInfo(id);
         })()
     },[])
-
-
-    let navigate = useNavigate();
+    
     const UpdateData = async (event)=>{
         event.preventDefault()
         
@@ -30,17 +32,42 @@ const UpdateFood = () => {
         let food_category=formData.get("food_category");
         let qty = parseInt(formData.get("qty"));
         let price = parseFloat(formData.get("price"));
+        
+        if(Helper.isEmpty(foods_name)){
+            toast.error('Food name is Required!');
+        }else if(Helper.isEmpty(food_code)){
+            toast.error('Food code is Required!');
+        }else if(Helper.isEmpty(foods_image)){
+            toast.error('Food image is Required!');
+        }else if(Helper.isEmpty(food_category)){
+            toast.error('Food category is Required!');
+        }else if(Helper.isEmpty(foods_name)){
+            toast.error('Food name is Required!');
+        }else if(Helper.isEmpty(qty)){
+            toast.error('Food quantity is Required!');
+        }else if(Helper.isEmpty(price)){
+            toast.error('Food price is Required!');
+        }else{
 
-        await axios.post(`${Helper.baseURL}/api/update/${id}`, {
-            foods_name: foods_name, 
-            food_code: food_code, 
-            foods_image: foods_image,
-            food_category: food_category,
-            qty: parseInt(qty),
-            price: parseFloat(price)
-        });
+            setSubmit(true);
+            const res = await axios.post(`${Helper.baseURL}/api/update/${id}`, {
+                foods_name: foods_name, 
+                food_code: food_code, 
+                foods_image: foods_image,
+                food_category: food_category,
+                qty: parseInt(qty),
+                price: parseFloat(price)
+            });
+            if(res.data['status'] === 'Success'){
+                navigate('/');
+            }else {                
+                setSubmit(false);
+                toast.error('Update Failed!');
+            }
+            
 
-        navigate('/');
+            
+        }
     }
 
 
@@ -50,7 +77,7 @@ const UpdateFood = () => {
               <div className="col-md-12">
                   <h6>Update Food Item </h6>
               </div>
-              <form onSubmit={UpdateData} >
+              <form onSubmit={UpdateData}>
                 <div className="row mt-4">
                     <div className="col-md-4 mb-3">
                         <label className="form-label">Food Name</label>
@@ -78,8 +105,12 @@ const UpdateFood = () => {
                         <label className="form-label">Price</label>
                         <input defaultValue={existing!== null ? (existing['price']):("") } name="price" type="number" className="form-control form-control-sm " placeholder="Enter food price"/>
                     </div>
+                    <div className="col-md-2 mb-3">
+                        <button disabled={submit} type="submit"  className="btn btn-primary form-control mt-3 w-g-1 ">{ submit ? (<ButtonSpinner/>) :  ("Update")}</button>
+                    </div>
+
                 </div>
-                <button type="submit" className="btn btn-primary mt-3">Update</button>
+                
               </form>
           </div>
       </div>

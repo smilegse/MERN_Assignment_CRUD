@@ -92,3 +92,8 @@ body{
     margin-bottom: 95%;
     padding: 3px 3px 3px 10px;
 }
+
+.col-md-3 {
+    flex: 0 0 auto;
+    width: 23.5%;
+  }
