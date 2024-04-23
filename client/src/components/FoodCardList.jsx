@@ -33,29 +33,31 @@ const FoodCardList = () => {
     }
 
     return (
-        <div className="container">
+        <div>
             <h6>All Food List</h6>
-            <div className="row">
-                {
-                    Data.length === 0? (<Loader/>):
-                    (Data.map((item,i)=>{
-                        return (
-                            <Card key={i} className="col-md-3 p-0 m-2" >
-                                <Card.Img variant="top" src={item['foods_image']} />
-                                
-                                <Card.Body>
-                                    <Card.Text >{item['foods_name']}</Card.Text>
-                                    {/* <Button className="w-30" size="sm" variant="outline-success" >Edit</Button> */}
-                                    <Link to={`/update/${item['_id']}`} className="w-30 btn btn-outline-success btn-sm">Edit</Link>
-                                    <Button className="w-30 mx-3" onClick={()=>{DeleteData(item['_id'])}} size="sm" variant="outline-danger" >Delete</Button>
-                                </Card.Body>
-                                <div className="card-img-overlay">
-                                    <span>Tk: {item['price']}</span>
+            <div className="container">
+                <div className="row">
+                    {
+                        Data.length === 0? (<Loader/>):
+                        (Data.map((item,i)=>{
+                            return (
+                                <div className="col-md-3">
+                                    <Card key={i} className="m-1 mb-4 " >
+                                        <Card.Img variant="top" src={item['foods_image']} />
+                                        <Card.Body>
+                                            <Card.Text >{item['foods_name']}</Card.Text>
+                                            <Link to={`/update/${item['_id']}`} className="btn btn-outline-success btn-sm">Edit</Link>
+                                            <Button className="mx-3" onClick={()=>{DeleteData(item['_id'])}} size="sm" variant="outline-danger" >Delete</Button>
+                                        </Card.Body>
+                                        <div className="card-img-overlay">
+                                            <span>Tk: {item['price']}</span>
+                                        </div>
+                                    </Card>
                                 </div>
-                            </Card>
-                        )
-                    }))
-                }
+                            )
+                        }))
+                    }
+                </div>
             </div>
         </div>
     )
