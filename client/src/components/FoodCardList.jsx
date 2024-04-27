@@ -42,7 +42,7 @@ const FoodCardList = () => {
                         (Data.map((item,i)=>{
                             return (
                                 <div className="col-md-3">
-                                    <Card key={i} className="m-1 mb-4 " >
+                                   <Card key={i} className="m-1 mb-4 " >
                                         <Card.Img variant="top" src={item['foods_image']} />
                                         <Card.Body>
                                             <Card.Text >{item['foods_name']}</Card.Text>

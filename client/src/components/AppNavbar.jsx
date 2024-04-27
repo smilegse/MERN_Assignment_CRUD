@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 //import { useRef } from 'react';
 
 const AppNavbar = () => {
@@ -14,16 +14,16 @@ const AppNavbar = () => {
     return (
         <ul className="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start " id="menu">
             <li className="nav-item menu-item mt-2 w-100  ">
-                <Link to="/" className="nav-link align-middle">
+                <NavLink to="/" className="nav-link align-middle ">
                     <i className="bi-grid-fill"></i> 
                     <span className="ms-1">All Foods</span>
-                </Link>
+                </NavLink>
             </li>    
             <li className="nav-item menu-item mt-2 w-100 ">
-                <Link to="/create" className="nav-link align-middle">
+                <NavLink to="/create" className="nav-link align-middle">
                     <i className="bi-cart-dash-fill"></i> 
                     <span className="ms-1">Create Food</span>
-                </Link>
+                </NavLink>
             </li>
         </ul> 
     )
