@@ -30,7 +30,7 @@ app.use(limiter)
 
 //process.dotenv.URI
 
-let URI = 'mongodb+srv://<username>:<password>@cluster0.rpnurvs.mongodb.net/MERN_FOOD_CRUD';
+// Database connection comes from .env file
 let OPTION = {user: process.env.DB_USER, pass: process.env.DB_PASS, autoIndex: true};
 mongoose.connect(process.env.MONGODB_URI+process.env.DB_NAME, OPTION).then((res)=>{
     console.log('DB Connection Success');
